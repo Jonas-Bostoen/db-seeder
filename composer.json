@@ -1,5 +1,5 @@
 {
-  "name": "nexus-rest-api/db-seeder",
+  "name": "jonas-bostoen/db-seeder",
   "description": "Simple to use PHP db seeding tool that uses faker generators based on thebazil/db-seeder",
   "license": "BSD-3-Clause",
   "require": {
@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "nexus-rest-api\\dbseeder\\": "src"
+      "jonas-bostoen\\dbseeder\\": "src"
     }
   }
 }
