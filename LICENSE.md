@@ -1,6 +1,8 @@
 The db-seeder is free software.
 It is released under the terms of the following BSD License.
 
+software base on: 
+
 Copyright © 2015, Vasiliy Baukin (https://github.com/tebazil)
 All rights reserved.
 

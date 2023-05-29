@@ -1,7 +1,10 @@
 # PHP Db Seeder
 
 This is an edited version of tebazil/db-seeder so it doesn't truncate the tables before seeding them.
-That way foreign keys are not lost. 
+That way foreign keys are not lost.
+ 
+Copyright © 2015, Vasiliy Baukin (https://github.com/tebazil)
+All rights reserved.
 
 ## Description
 
