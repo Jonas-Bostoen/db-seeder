@@ -1,4 +1,10 @@
 # PHP Db Seeder
+
+This is an edited version of tebazil/db-seeder so it doesn't truncate the tables before seeding them.
+That way foreign keys are not lost. 
+
+## Description
+
 Have your database populated with fake data in no time! 
 
 * Very easy to use!
