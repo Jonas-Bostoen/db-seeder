@@ -7,7 +7,7 @@
  * Time: 22:34
  */
 
-namespace tebazil\dbseeder;
+namespace dbseeder;
 
 
 use PDO;
@@ -40,7 +40,7 @@ class DbHelper
         }
         return $stmt->execute($placeholderValues);
     }
-    
+
     public function truncateTable($table)
     {
         $sql = "DELETE FROM " . $table;

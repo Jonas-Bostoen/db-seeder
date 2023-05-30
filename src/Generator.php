@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: tebazil
@@ -6,7 +7,7 @@
  * Time: 22:27
  */
 
-namespace tebazil\dbseeder;
+namespace dbseeder;
 
 
 class Generator
@@ -26,7 +27,7 @@ class Generator
 
     public function getValue($config)
     {
-        if(!is_array($config)) {
+        if (!is_array($config)) {
             $config = [$config];
         }
 
@@ -37,15 +38,15 @@ class Generator
                 break;
             case self::FAKER:
                 $faker = $this->faker;
-                if(isset($config[3])) { //options
+                if (isset($config[3])) { //options
 
-                    if(isset($config[3][FakerConfigurator::UNIQUE]) && is_array($config[3][FakerConfigurator::UNIQUE])) {
+                    if (isset($config[3][FakerConfigurator::UNIQUE]) && is_array($config[3][FakerConfigurator::UNIQUE])) {
                         $faker = call_user_func_array([$faker, 'unique'], $config[3][FakerConfigurator::UNIQUE]);
                     }
-                    if(isset($config[3][FakerConfigurator::OPTIONAL]) && is_array($config[3][FakerConfigurator::OPTIONAL])) {
+                    if (isset($config[3][FakerConfigurator::OPTIONAL]) && is_array($config[3][FakerConfigurator::OPTIONAL])) {
                         $faker = call_user_func_array([$faker, 'optional'], $config[3][FakerConfigurator::OPTIONAL]);
                     }
-                    if(isset($config[3][FakerConfigurator::VALID]) && is_array($config[3][FakerConfigurator::VALID])) {
+                    if (isset($config[3][FakerConfigurator::VALID]) && is_array($config[3][FakerConfigurator::VALID])) {
                         $faker = call_user_func_array([$faker, 'valid'], $config[3][FakerConfigurator::VALID]);
                     }
                 }
@@ -56,7 +57,7 @@ class Generator
                 }
                 break;
             case self::RELATION:
-                if(!$this->isColumnSet($config[1], $config[2])) {
+                if (!$this->isColumnSet($config[1], $config[2])) {
                     throw new \InvalidArgumentException("Table data for table $config[1] column $config[2] is not found in class instance. Probably this is a bug.");
                 }
                 $value = $this->getRandomColumnValue($config[1], $config[2]);
@@ -64,8 +65,7 @@ class Generator
             default:
                 if (is_callable($config[0])) {
                     return call_user_func($config[0]);
-                }
-                else return $config[0];
+                } else return $config[0];
                 break;
         }
         return $value;
@@ -83,28 +83,27 @@ class Generator
             $this->reset = false;
         }
         return $this->pkValue++;
-
     }
 
     private function getNewFakerInstance()
     {
-        return \Faker\Factory::create();
+        // return \Faker\Factory::create();
     }
 
-    private function isColumnSet($table, $column) {
+    private function isColumnSet($table, $column)
+    {
         return isset($this->tables[$table]) && isset($this->tables[$table][$column]);
     }
 
-    public function setColumns($table, $columns) {
+    public function setColumns($table, $columns)
+    {
         $this->tables[$table] = $columns;
     }
 
-    public function getRandomColumnValue($table, $column) {
-        if(isset($this->tables[$table][$column])) {
+    public function getRandomColumnValue($table, $column)
+    {
+        if (isset($this->tables[$table][$column])) {
             return $this->tables[$table][$column][array_rand($this->tables[$table][$column])];
-        }
-        else throw new \InvalidArgumentException("Table $table , column $column is not filled");
+        } else throw new \InvalidArgumentException("Table $table , column $column is not filled");
     }
-
-
 }
